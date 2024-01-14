@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  db_soccer_sorter:
+    container_name: db_soccer_sorter_dev
+    image: postgres:13-alpine
+    volumes:
+      - postgres_soccer_sorter_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    env_file:
+      - ./.env.dev
+    ports:
+      - "5435:5432"
+
+    web_soccer_sorter:
+      container_name: web_soccer_sorter_dev
+      image: web_soccer_sorter_dev_img
+      build: .
+      tty: true
+      volumes:
+        - .:/soccer_sorter
+      ports:
+        - 8000:8000
+      depends_on:
+        - db_soccer_sorter
+      
+      env_file:
+        - ./.env.dev
+    
+  volumes:
+    postgres_soccer_sorter_data:
+    

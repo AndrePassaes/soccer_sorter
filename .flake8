@@ -1,0 +1,23 @@
+[flake8]
+
+ignore = W503, I100, I101, E203, E731
+exclude =
+    .tox,
+    .git,
+    __pycache__,
+    __init__.py,
+    build,
+    dist,
+    *.pyc,
+    *.egg-info,
+    .cache,
+    .eggs,
+    *migrations*,
+    *static*,
+    *venv*,
+    *manage.py,
+    apps.py
+max-complexity = 15
+max-line-length = 100
+import-order-style = google
+application-import-names = flake8
