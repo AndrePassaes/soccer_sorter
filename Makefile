@@ -34,7 +34,7 @@ start:
 	docker exec -ti web_soccer_sorter python manage.py runserver 0.0.0.0:8000
 
 stop: 
-	docker-compose -f docker-compose-dewv.yaml stop
+	docker-compose -f docker-compose-dev.yaml stop
 
 test:
 	docker exec -ti web_soccer_sorter pytest . --cov-report term --cov=. --cov-fail-under=80
@@ -55,7 +55,7 @@ pre:
 isort:
 	@echo "\n############################### Running isort ###################################\n"
 	docker exec -ti web_soccer_sorter isort .
-	docmer exec -ti -u root web_soccer_sorter chown -R soccer_sorter:soccer_sorter /soccer_sorter
+	docker exec -ti -u root web_soccer_sorter chown -R soccer_sorter:soccer_sorter /soccer_sorter
 
 flake8:
 	@echo "\n################################ Running flake8. ################################\n"
