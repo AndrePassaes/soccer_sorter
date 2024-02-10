@@ -21,23 +21,23 @@ endif
 	docker-compose -f docker-compose-dev.yaml --env-file=.env.dev up -d --build
 
 makemigrations:
-	docker exec -ti web_soccer_sorter python manage.py makemigrations
+	docker exec -ti web_soccer_sorter_img python manage.py makemigrations
 
 migrate:
-	docker exec -ti web_soccer_sorter python manage.py migrate
+	docker exec -ti web_soccer_sorter_img python manage.py migrate
 
 createsuperuser:
-	docker exec -ti web_soccer_sorter python manage.py createsuperuser
+	docker exec -ti web_soccer_sorter_img python manage.py createsuperuser
 
 start:
 	docker-compose -f docker-compose-dev.yaml start
-	docker exec -ti web_soccer_sorter python manage.py runserver 0.0.0.0:8000
+	docker exec -ti web_soccer_sorter_img python manage.py runserver 0.0.0.0:8000
 
 stop: 
 	docker-compose -f docker-compose-dev.yaml stop
 
 test:
-	docker exec -ti web_soccer_sorter pytest . --cov-report term --cov=. --cov-fail-under=80
+	docker exec -ti web_soccer_sorter_dev_img pytest . --cov-report term --cov=. --cov-fail-under=80
 
 lint:
 	@echo "\n########## Runs isort, black and flake8. Organizing and linting code. ###########\n"
