@@ -13,11 +13,11 @@ services:
     env_file:
       - ./.env.dev
     ports:
-      - "5435:5432"
+      - "5436:5432"
 
   web_sorter:
     container_name: web_soccer_sorter_dev
-    image: web_soccer_sorter_dev_img
+    #image: web_soccer_sorter_dev_img
     build: .
     tty: true
     volumes:

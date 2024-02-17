@@ -21,32 +21,32 @@ endif
 	docker-compose -f docker-compose-dev.yaml --env-file=.env.dev up -d --build
 
 makemigrations:
-	docker exec -ti web_soccer_sorter_img python manage.py makemigrations
+	docker exec -ti web_soccer_sorter_dev python manage.py makemigrations
 
 migrate:
-	docker exec -ti web_soccer_sorter_img python manage.py migrate
+	docker exec -ti web_soccer_sorter_dev python manage.py migrate
 
 createsuperuser:
-	docker exec -ti web_soccer_sorter_img python manage.py createsuperuser
+	docker exec -ti web_soccer_sorter_dev python manage.py createsuperuser
 
 start:
 	docker-compose -f docker-compose-dev.yaml start
-	docker exec -ti web_soccer_sorter_img python manage.py runserver 0.0.0.0:8000
+	docker exec -ti web_soccer_sorter_dev python manage.py runserver 0.0.0.0:8000
 
 stop: 
 	docker-compose -f docker-compose-dev.yaml stop
 
 test:
-	docker exec -ti web_soccer_sorter_dev_img pytest . --cov-report term --cov=. --cov-fail-under=80
+	docker exec -ti web_soccer_sorter_dev pytest . --cov-report term --cov=. --cov-fail-under=80
 
 lint:
 	@echo "\n########## Runs isort, black and flake8. Organizing and linting code. ###########\n"
 	@echo "############################### Running isort ###################################\n"
-	docker exec -ti web_soccer_sorter isort .
-	docker exec -ti -u root web_soccer_sorter chown -R soccer_sorter:soccer_sorter /soccer_sorter
+	docker exec -ti web_soccer_sorter_dev isort .
+	docker exec -ti -u root web_soccer_sorter_dev chown -R soccer_sorter:soccer_sorter /soccer_sorter
 	@echo "\n################################ Running flake8. ################################\n"
-	docker exec -ti web_soccer_sorter flake8 .
-	docker exec -ti -u root web_soccer_sorter chown -R soccer_sorter:soccer_sorter /soccer_sorter
+	docker exec -ti web_soccer_sorter_dev flake8 .
+	docker exec -ti -u root web_soccer_sorter_dev chown -R soccer_sorter:soccer_sorter /soccer_sorter
 
 pre: 
 	make lint
@@ -54,10 +54,10 @@ pre:
 
 isort:
 	@echo "\n############################### Running isort ###################################\n"
-	docker exec -ti web_soccer_sorter isort .
-	docker exec -ti -u root web_soccer_sorter chown -R soccer_sorter:soccer_sorter /soccer_sorter
+	docker exec -ti web_soccer_sorter_dev isort .
+	docker exec -ti -u root web_soccer_sorter_dev chown -R soccer_sorter:soccer_sorter /soccer_sorter
 
 flake8:
 	@echo "\n################################ Running flake8. ################################\n"
-	docker exec -ti web_soccer_sorter flake8 .
-	docker exec -ti -u root web_soccer_sorter chown -R soccer_sorter:soccer_sorter /soccer_sorter
+	docker exec -ti web_soccer_sorter_dev flake8 .
+	docker exec -ti -u root web_soccer_sorter_dev chown -R soccer_sorter:soccer_sorter /soccer_sorter

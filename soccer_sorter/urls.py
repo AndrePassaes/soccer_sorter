@@ -21,5 +21,8 @@ from teams import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('players/', views.list_players, name='list_players'),
+    path('index/', views.index, name='index'),    
+    path('create_player/', views.create_player, name='create_player'),
+    path('sort_players/', views.sort_players, name='sort_players'),
     #add paths for other views
 ]

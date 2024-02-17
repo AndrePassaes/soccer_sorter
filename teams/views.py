@@ -9,9 +9,10 @@ def index(request):
     teams = Team.objects.all()
     context = {
         'players': players,
-        'teams': teams
+        'teams': teams,
     }
-    return render(request, 'teams/index.html', context)
+    print("killers")
+    return render(request, 'teams/pages/index.html', context)
 
 def list_players(request):
     players = list(Player.objects.values())
