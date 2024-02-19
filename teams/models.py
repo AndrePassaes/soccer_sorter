@@ -17,7 +17,10 @@ class Player(models.Model):
         return self.name
 
 class Team(models.Model):
-    name = models.CharField(max_length=100, default='Team')
+    name = models.CharField(
+        max_length=100,
+        default='Team'
+    )
     
     def __str__(self):
         return self.name
