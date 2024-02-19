@@ -11,7 +11,6 @@ def index(request):
         'players': players,
         'teams': teams,
     }
-    print("killers")
     return render(request, 'teams/pages/index.html', context)
 
 def list_players(request):
